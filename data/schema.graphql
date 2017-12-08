@@ -1,0 +1,35 @@
+input AddTaskInput {
+  text: String!
+  clientMutationId: String
+}
+
+type AddTaskPayload {
+  taskEdge: Task
+  clientMutationId: String
+}
+
+type Mutation {
+  checkHidingSpotForTreasure(input: AddTaskInput!): AddTaskPayload
+}
+
+# An object with an ID
+interface Node {
+  # The id of the object.
+  id: ID!
+}
+
+type Query {
+  # Fetches an object given its ID
+  node(
+    # The ID of an object
+    id: ID!
+  ): Node
+  game: Task
+}
+
+# A task field
+type Task implements Node {
+  # The ID of an object
+  id: ID!
+  text: String
+}
